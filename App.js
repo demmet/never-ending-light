@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react';
 import {
-  StyleSheet,
-  Text,
-  Image,
   ScrollView,
-  Dimensions,
   FlatList
 } from 'react-native';
 
-import Header from './src/components/header'
-import Photo from './src/components/photo'
+import { Header } from './src/components/Header'
+import { Photo } from './src/components/Photo'
 
 const info = [
   { id: 1, user: "Goku" },
@@ -27,7 +23,6 @@ const App = () => {
           <Fragment>
             <Header
               userName={ item.user }
-              imagePath={ 'random.jpg' }
             />
             <Photo />
           </Fragment>
