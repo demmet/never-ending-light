@@ -1,19 +1,40 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Fragment } from 'react';
+import {
+  StyleSheet,
+  Text,
+  Image,
+  ScrollView,
+  Dimensions,
+  FlatList
+} from 'react-native';
 
-export default function App() {
+import Header from './src/components/header'
+import Photo from './src/components/photo'
+
+const info = [
+  { id: 1, user: "Goku" },
+  { id: 2, user: "Trunks" },
+  { id: 3, user: "Vegeta" },
+]
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <ScrollView>
+      <FlatList
+        data={ info }
+        keyExtractor={ (item) => item.id.toString() }
+        renderItem={({ item }) =>
+          <Fragment>
+            <Header
+              userName={ item.user }
+              imagePath={ 'random.jpg' }
+            />
+            <Photo />
+          </Fragment>
+        }
+      />      
+    </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
