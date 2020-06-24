@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     borderRadius: 30,
-    height: 40,
+    height: 50,
     margin: 10,
-    width: 40
+    width: 50
   }
 })
 

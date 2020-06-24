@@ -1,30 +1,37 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import {
   ScrollView,
   FlatList
 } from 'react-native';
 
-import { Header } from './src/components/Header'
-import { Photo } from './src/components/Photo'
-
-const info = [
-  { id: 1, user: "Goku" },
-  { id: 2, user: "Trunks" },
-  { id: 3, user: "Vegeta" },
-]
+import fetchPhotos from './src/api/feed'
+import { Header } from './src/components/Header';
+import { Photo } from './src/components/Photo';
 
 const App = () => {
+  const [photos, setPhotos] = useState([])
+
+  useEffect(() => {
+    fetchPhotos(setPhotos);
+  }, []);
+
   return (
     <ScrollView>
       <FlatList
-        data={ info }
+        data={ photos }
         keyExtractor={ (item) => item.id.toString() }
+        style={{ marginTop: 20 }}
         renderItem={({ item }) =>
           <Fragment>
             <Header
-              userName={ item.user }
+              userName={ item.author }
+              imageUrl={ item.download_url }
             />
-            <Photo />
+            <Photo
+              imageUrl={ item.download_url }
+              description={ item.url }
+              qtdLikes={ parseInt(item.height) }
+            />
           </Fragment>
         }
       />      

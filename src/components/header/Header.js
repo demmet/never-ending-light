@@ -7,11 +7,11 @@ import {
 
 import styles from './style';
 
-const Header = ({ userName }) => {
+const Header = ({ userName, imageUrl }) => {
   return (
     <View style={ styles.header }>
       <Image
-        source={ require(`../../../assets/img/random.jpg`) }
+        source={{ uri: imageUrl }}
         style={ styles.headerImage }
       />
       <Text style={ styles.headerText }>{ userName }</Text>
